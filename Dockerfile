@@ -40,6 +40,7 @@ RUN pacman -Syy && pacman -S --noconfirm \
 
 
 # Clone the code
+RUN git lfs install
 RUN mkdir ${CODE_PATH}
 RUN cd ${CODE_PATH} && git clone ${GST_ML_REMOTE_URL} -b ${GST_ML_BRANCH}
 
