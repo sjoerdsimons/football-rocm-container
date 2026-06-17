@@ -1,0 +1,29 @@
+name: rocm-football
+
+services:
+  translations:
+    image: rocm-football
+    container_name: rocm-football-container
+    hostname: rocm-football
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    restart: unless-stopped
+
+    # volumes:
+      # - ${VIDEOS_PATH}:/videos
+
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
+    # environment:
+    #   - NVIDIA_DRIVER_CAPABILITIES=all
+
+    # shm_size: '64gb'
