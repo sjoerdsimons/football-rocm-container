@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM rocm/onnxruntime:rocm7.2.4_ub24.04_ort1.23_torch2.10.0
+FROM archlinux:base-devel-20260614.0.544538
 
 SHELL ["/bin/bash", "-c"]
 
@@ -11,24 +11,33 @@ ARG CODE_PATH=/root/src
 ARG GST_ML_PATH=${CODE_PATH}/gst-python-ml
 
 # Not a minimal selection
-RUN apt-get update && apt-get install -y \
+RUN pacman -Syy && pacman -S --noconfirm \
     git \
-    python3-virtualenv \
-    python3-gst-1.0 \
-    libgstreamer-plugins-good1.0-dev \
-    python3-cairo-dev \
-    gstreamer1.0-tools \
-    gstreamer1.0-plugins-base \
-    gstreamer1.0-plugins-bad \
-    gstreamer1.0-plugins-good \
-    gstreamer1.0-python3-plugin-loader \
-    gstreamer1.0-plugins-base-apps \
-    python3-gi \
-    gir1.2-gstreamer-1.0 \
-    gir1.2-gst-plugins-bad-1.0 \
-    libcairo2 libcairo2-dev \
-    libgirepository-2.0-dev \
-    && rm -rf /var/lib/apt/lists/*
+    onnxruntime-opt-rocm \
+    python-onnxruntime-opt-rocm \
+    gst-python \
+    gst-plugins-base \
+    gst-plugins-good \
+    gst-plugins-bad \
+    python-virtualenv \
+    python-pytorch-opt-rocm \
+    gst-plugins-bad-libs
+
+
+# in case i forgot to add it here
+# (.venv) [root@14748dc9b886 gst-python-ml]# history | grep pacman
+#     1  pacman -Syy
+#     2  pacman -S --noconfirm git     onnxruntime-opt-rocm     python-onnxruntime-opt-rocm     gst-python     gst-plugins-base     python-virtualenv     python-pytorch-opt-rocm
+#    20  pacman -Ss gst
+#    21  pacman -S gst-plugins-bad-libs
+#    30  pacman -S gst-plugins-bad gst-plugins-ugly
+#    31  pacman -S gst-plugins-bad
+#    33  pacman -S gst-plugins-ugly
+#    35  pacman -Ss gst
+#    36  pacman -Ss gst | grep installed
+#    37  pacman -S gst-plugins-good
+#    53  history | grep pacman
+
 
 # Clone the code
 RUN mkdir ${CODE_PATH}

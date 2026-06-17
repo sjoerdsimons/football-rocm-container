@@ -16,7 +16,10 @@ docker compose up --build
 
 ```
 # TODO: Expose wayland
-docker run -it -v '/home/user/Videos/:/videos/' rocm-football:latest
+# docker run -it -v '/home/user/Videos/:/videos/' rocm-football:latest
+
+# Expose ROCm GPU
+docker run -it --rm --device=/dev/kfd --device=/dev/dri/renderD128 --security-opt seccomp=unconfined -v ~/Videos:/videos/ football-arch:latest
 ```
 
 ### Run the demo

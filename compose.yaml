@@ -1,8 +1,17 @@
 name: rocm-football
 
 services:
-  translations:
+  football:
     image: rocm-football
+    devices:
+      - /dev/kfd:/dev/kfd
+      - /dev/dri:/dev/dri
+    security_opt:
+      - seccomp:unconfined
+    group_add:
+      - video
+      - render
+
     container_name: rocm-football-container
     hostname: rocm-football
 
