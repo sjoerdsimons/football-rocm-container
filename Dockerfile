@@ -9,6 +9,8 @@ ARG GST_ML_REMOTE_URL="https://github.com/lubosz/gst-python-ml.git"
 ARG GST_ML_BRANCH="soccer-analyzer"
 ARG CODE_PATH=/root/src
 ARG GST_ML_PATH=${CODE_PATH}/gst-python-ml
+ENV GST_PLUGIN_PATH=${GST_ML_PATH}/plugins
+ENV XDG_RUNTIME_DIR=/run/user/0
 
 # Not a minimal selection
 RUN pacman -Syy && pacman -S --noconfirm \
@@ -56,3 +58,5 @@ RUN bash <<EOF
     GST_DEBUG=3 gst-inspect-1.0 python
     pip install supervision
 EOF
+
+COPY wrapper/demo.py  /usr/local/bin
