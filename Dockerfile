@@ -55,3 +55,10 @@ RUN bash <<EOF
     GST_DEBUG=3 gst-inspect-1.0 python
     pip install supervision
 EOF
+
+
+# build torchvision: something like that
+# pacman -S base-devel
+# git clone https://aur.archlinux.org/python-torchvision-rocm.git
+# cd python-torchvision-rocm
+# makepkg -si
