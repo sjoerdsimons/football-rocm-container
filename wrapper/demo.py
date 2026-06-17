@@ -49,7 +49,7 @@ def main():
         "  position-smoothing=0.6 highlight-focal=false ! "
         "queue max-size-buffers=600 max-size-time=0 max-size-bytes=0 "
           " min-threshold-buffers=30 ! "
-        "videoconvert ! autovideosink sync=true"
+        "videoconvert ! gtkwaylandsink sync=true"
     )
     print(pipeline_description)
 

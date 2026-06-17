@@ -22,9 +22,11 @@ RUN pacman -Syy && pacman -S --noconfirm \
     gst-plugins-base \
     gst-plugins-good \
     gst-plugins-bad \
+    gst-plugin-gtk \
     python-virtualenv \
     python-pytorch-opt-rocm \
-    gst-plugins-bad-libs
+    gst-plugins-bad-libs \
+    vim
 
 # in case i forgot to add it here
 # (.venv) [root@14748dc9b886 gst-python-ml]# history | grep pacman
