@@ -5,7 +5,7 @@ FROM archlinux:base-devel-20260614.0.544538
 SHELL ["/bin/bash", "-c"]
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG GST_ML_REMOTE_URL="https://github.com/lubosz/gst-python-ml.git"
+ARG GST_ML_REMOTE_URL="https://github.com/sjoerdsimons/gst-python-ml.git"
 ARG GST_ML_BRANCH="soccer-analyzer"
 ARG CODE_PATH=/root/src
 ARG GST_ML_PATH=${CODE_PATH}/gst-python-ml
